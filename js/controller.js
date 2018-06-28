@@ -50,8 +50,12 @@ class CurrencyConverter {
             const rate = Object.values(exchangeRate)[0].val;
             const convertedCurrency = value * rate;
             const displayBox = document.querySelector('.converter__currency-display');
-            displayBox.setAttribute('data-num-value', convertedCurrency);
-            displayBox.textContent = convertedCurrency.toLocaleString('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            displayBox.setAttribute('data-num-value', convertedCurrency.toFixed(2));
+            displayBox.textContent = convertedCurrency.toLocaleString('en', 
+            {   
+                minimumFractionDigits: 2, 
+                maximumFractionDigits: 2 
+            });
             return convertedCurrency;
         });
     }

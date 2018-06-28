@@ -37,7 +37,7 @@
                     </div>
                     <div class="toggle-currency">
                         <button class="btn btn-primary toggle-currency__switch">
-                            <span>&#11021;</span>
+                            <span>&#8593;&#8595;</span>
                         </button>
                     </div>
                     <div class="calculator__to-currency">
@@ -86,13 +86,19 @@
         let currencyFrom = document.querySelector('#convert--from').value;
         let currencyTo = document.querySelector('#convert--to').value;
         let valueFrom = document.querySelector('.converter__currency-input').value;
-        let valueFrom = document.querySelector('.converter__currency-display').textContent;
+        let valueTo = document.querySelector('.converter__currency-display').getAttribute('data-num-value');
 
         // Use destructuring to swap values
-        [currencyFrom, currencyTo] = [currencyTo, currencyFrom];
+        [currencyFrom, valueFrom, currencyTo, valueTo] = [currencyTo, valueTo, currencyFrom, valueFrom];
 
         document.querySelector('#convert--from').value = currencyFrom;
         document.querySelector('#convert--to').value = currencyTo;
+        document.querySelector('.converter__currency-input').value = valueFrom;
+        document.querySelector('.converter__currency-display').textContent = valueTo.toLocaleString('en', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+
         convertCurrency();
     });
 

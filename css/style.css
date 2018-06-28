@@ -78,7 +78,7 @@ body {
 .toggle-currency {
     position: absolute;
     top: 45%;
-    right: 5%;
+    right: 40%;
     z-index: 99999;
 }
 
@@ -114,9 +114,9 @@ body {
 
 .toggle-currency__switch > span {
     display: block;
-    margin-top: -1px;
+    margin-top: -6px;
     letter-spacing: -5px;
-    margin-left: -3px;
+    margin-left: -5px;
 }
 
 .convert__currency-list {
