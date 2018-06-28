@@ -1,0 +1,148 @@
+.form-control {
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+}
+
+.form-control:focus {
+    border-color: inherit;
+    outline: 0;
+    box-shadow: none;
+}
+
+body {
+    font-family: 'Lato', 'Times New Roman', Times, serif;
+    background: #F4F4F4;
+}
+
+.main {
+    padding: 30px 0;
+}
+
+.converter {
+    position: relative;
+    height: 85vh;
+    background: #FFFFFF;
+    box-shadow: 1px 15px 25px #B5A2A2;
+}
+
+.converter-display, .calculator__to-currency  {
+    height: 50%;
+}
+
+.converter-display  {
+    background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+}
+
+.calculator__to-currency  {
+    background: #FFFFFF;
+}
+
+.converter-display__header {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 0 30px 0;
+    color: #FFFFFF;
+}
+
+.converter-display, .calculator__to-currency {
+    position: relative;
+}
+
+.converter__container {
+    width: 100%;
+    position: absolute;
+    top: 30%;
+}
+
+.converter__currency-input {
+    background: inherit;
+    font-size: 40px;
+    font-weight: 500;
+    border-bottom: 2px solid #7096E6;
+    color: #7096E6;
+    padding: 20px 0;
+}
+
+.converter__currency-display {
+    color: #FFFFFF;
+    display: block;
+    font-size: 50px;
+    font-weight: 500;
+    margin-top: -5px;
+    word-wrap: break-word;
+    line-height: 41px;
+}
+
+.toggle-currency {
+    position: absolute;
+    top: 45%;
+    right: 5%;
+    z-index: 99999;
+}
+
+.toggle-currency__switch {
+    padding: 0;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 1px 10px #6d6464;
+    font-weight: 500;
+    font-size: 35px;
+    border-radius: 100px;
+}
+
+.toggle-currency__switch, 
+.toggle-currency__switch:hover, 
+.toggle-currency__switch:active,
+.toggle-currency__switch:active:hover,
+.toggle-currency__switch:focus,
+.toggle-currency__switch:active:focus  {
+    background: #FFFFFF;
+    color: #7096E6;
+    border: none;
+}
+
+.toggle-currency__switch:hover, 
+.calculator__controls--btn:active,
+.calculator__controls--btn:focus,
+.calculator__controls--btn:active:focus {
+    box-shadow: 0 1px 3px #6d6464;
+    outline: none;
+    outline-offset: 0;
+}
+
+.toggle-currency__switch > span {
+    display: block;
+    margin-top: -1px;
+    letter-spacing: -5px;
+    margin-left: -3px;
+}
+
+.convert__currency-list {
+    background-color: inherit;
+    font-weight: 600;
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 20px;
+}
+
+#convert--to {
+    color: #FFFFFF;
+}
+
+#convert--to > option {
+    background: #7096E6;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+#convert--from {
+    color: #7096E6;
+}
+
+#convert--from > option {
+    background: #FFFFFF;
+    color: #7096E6;
+    font-weight: 600;
+}
