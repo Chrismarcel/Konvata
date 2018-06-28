@@ -21,18 +21,19 @@ body {
 
 .converter {
     position: relative;
-    height: 85vh;
-    background: #FFFFFF;
+    height: auto;
+    overflow: hidden;
+    background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
     box-shadow: 1px 15px 25px #B5A2A2;
 }
 
-.converter-display, .calculator__to-currency  {
-    height: 50%;
+.converter-display  {
+    height: 55%;
 }
 
-.converter-display  {
-    background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
-}
+ .calculator__to-currency {
+     height: 45%;
+ }
 
 .calculator__to-currency  {
     background: #FFFFFF;
@@ -42,7 +43,7 @@ body {
     display: block;
     font-size: 16px;
     font-weight: 600;
-    padding: 10px 0 30px 0;
+    padding: 10px 0 15px 0;
     color: #FFFFFF;
 }
 
@@ -52,43 +53,65 @@ body {
 
 .converter__container {
     width: 100%;
-    position: absolute;
-    top: 30%;
 }
 
-.converter__currency-input {
-    background: inherit;
-    font-size: 40px;
-    font-weight: 500;
-    border-bottom: 2px solid #7096E6;
-    color: #7096E6;
-    padding: 20px 0;
+.currency-input, .converter__currency-input {
+    padding: 0;
 }
+
+.btn-value {
+    width: 100%;
+    padding: 13px;
+    font-weight: 600;
+    font-size: 20px;
+    background: inherit;
+    color: #7096E6;
+    border: inherit;
+    margin-bottom: 10px;
+}  
 
 .converter__currency-display {
     color: #FFFFFF;
     display: block;
-    font-size: 50px;
+    font-size: 30px;
     font-weight: 500;
     margin-top: -5px;
     word-wrap: break-word;
     line-height: 41px;
 }
 
+.conversion {
+    margin-bottom: 20px;
+}
+
 .toggle-currency {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.toggle-currency::before, .toggle-currency::after {
+    content: '';
+    width: 115px;
     position: absolute;
-    top: 45%;
-    right: 40%;
-    z-index: 99999;
+    top: 15px;
+    border-bottom: 2px solid #FFFFFF;
+}
+
+.toggle-currency::after {
+    right: 20px;
+}
+
+.toggle-currency::before {
+    left: 20px;
 }
 
 .toggle-currency__switch {
     padding: 0;
-    width: 50px;
-    height: 50px;
-    box-shadow: 0 1px 10px #6d6464;
+    width: 35px;
+    height: 35px;
+    box-shadow: 0 1px 10px #6D6464;
     font-weight: 500;
-    font-size: 35px;
+    font-size: 27px;
     border-radius: 100px;
 }
 
@@ -119,30 +142,25 @@ body {
     margin-left: -5px;
 }
 
+.converter__input {
+    padding: 0;
+    background: #FFFFFF;
+}
+
 .convert__currency-list {
     background-color: inherit;
     font-weight: 600;
     padding-left: 0;
     padding-right: 0;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
-#convert--to {
+.convert__currency-list {
     color: #FFFFFF;
 }
 
-#convert--to > option {
+.convert__currency-list > option {
     background: #7096E6;
     color: #FFFFFF;
-    font-weight: 600;
-}
-
-#convert--from {
-    color: #7096E6;
-}
-
-#convert--from > option {
-    background: #FFFFFF;
-    color: #7096E6;
     font-weight: 600;
 }

@@ -24,34 +24,96 @@
                         <div class="converter__container">
                             <div class="col-xs-12 conversion">
                                 <select name="currencies" class="form-control convert__currency-list" id="convert--to">
-                                    <!-- <option value="NGN">NGN</option>
-                                <option value="EUR">EUR</option>
-                                <option value="USD">USD</option>
-                                <option value="PHP">PHP</option> -->
+                                    <option value="NGN">NGN</option>
+                                    <option value="EUR">EUR</option>
+                                    <option value="USD">USD</option>
+                                    <option value="PHP">PHP</option>
                                 </select>
+                                <div class="convert conversion__container--display">
+                                    <span class="converter__currency-display converted">0</span>
+                                </div>
                             </div>
-                            <div class="col-xs-12 convert conversion__container--display">
-                                <span class="converter__currency-display">0.00</span>
+                            <div class="col-xs-12 toggle-currency text-center">
+                                <button class="btn btn-primary toggle-currency__switch">
+                                    <span>&#8593;&#8595;</span>
+                                </button>
+                            </div>
+                            <div class="col-xs-12 conversion">
+                                <select name="currencies" class="form-control convert__currency-list" id="convert--from">
+                                    <option value="NGN">NGN</option>
+                                    <option value="EUR">EUR</option>
+                                    <option value="USD">USD</option>
+                                    <option value="PHP">PHP</option>
+                                </select>
+                                <div class="convert conversion__container--display">
+                                    <span class="converter__currency-display amount">0</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="toggle-currency">
-                        <button class="btn btn-primary toggle-currency__switch">
-                            <span>&#8593;&#8595;</span>
-                        </button>
-                    </div>
                     <div class="calculator__to-currency">
                         <div class="converter__container">
-                            <div class="col-xs-12 conversion">
-                                <select name="currencies" class="form-control convert__currency-list" id="convert--from">
-                                    <!-- <option value="EUR">EUR</option>
-                                <option value="NGN">NGN</option>
-                                <option value="USD">USD</option>
-                                <option value="PHP">PHP</option> -->
-                                </select>
-                            </div>
-                            <div class="col-xs-12 convert conversion__container--convert">
-                                <input type="text" class="form-control converter__currency-input" placeholder="0.00">
+                            <div class="col-xs-12 converter__input">
+                                <div class="col-xs-4 converter__currency-input">
+                                    <button class="btn btn-primary btn-value" value="1">
+                                        1
+                                    </button>
+                                </div>
+                                <div class="col-xs-4 currency-input">
+                                    <button class="btn btn-primary btn-value" value="2">
+                                        2
+                                    </button>
+                                </div>
+                                <div class="col-xs-4 currency-input">
+                                    <button class="btn btn-primary btn-value" value="3">
+                                        3
+                                    </button>
+                                </div>
+                                <div class="col-xs-4 currency-input">
+                                    <button class="btn btn-primary btn-value" value="4">
+                                        4
+                                    </button>
+                                </div>
+                                <div class="col-xs-4 currency-input">
+                                    <button class="btn btn-primary btn-value" value="5">
+                                        5
+                                    </button>
+                                </div>
+                                <div class="col-xs-4 currency-input">
+                                    <button class="btn btn-primary btn-value" value="6">
+                                        6
+                                    </button>
+                                </div>
+                                <div class="col-xs-4 currency-input">
+                                    <button class="btn btn-primary btn-value" value="7">
+                                        7
+                                    </button>
+                                </div>
+                                <div class="col-xs-4 currency-input">
+                                    <button class="btn btn-primary btn-value" value="8">
+                                        8
+                                    </button>
+                                </div>
+                                <div class="col-xs-4 currency-input">
+                                    <button class="btn btn-primary btn-value" value="9">
+                                        9
+                                    </button>
+                                </div>
+                                <div class="col-xs-4 currency-input">
+                                    <button class="btn btn-primary btn-value" value=".">
+                                        .
+                                    </button>
+                                </div>
+                                <div class="col-xs-4 currency-input">
+                                    <button class="btn btn-primary btn-value" value="0">
+                                        0
+                                    </button>
+                                </div>
+                                <div class="col-xs-4 currency-input">
+                                    <button class="btn btn-primary btn-value" value="del">
+                                        &#9003;
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -67,7 +129,7 @@
 <script>
     // Populate the select options via the listCurrencies static method
     const selectOptions = Array.from(document.querySelectorAll('.convert__currency-list'));
-    CurrencyConverter.listCurrencies(selectOptions);
+    //CurrencyConverter.listCurrencies(selectOptions);
 
     const currencyLists = Array.from(document.querySelectorAll('.convert__currency-list'));
     currencyLists.map(currencyList => {
@@ -76,36 +138,57 @@
         });
     });
 
-    const inputBox = document.querySelector('.converter__currency-input');
-    inputBox.addEventListener('keyup', () => {
-        convertCurrency();
+    const inputValues = Array.from(document.querySelectorAll('.btn-value'));
+    inputValues.map(inputValue => {
+        inputValue.addEventListener('click', function() {
+            const inputValue = this.value;
+            const amountDisplay = document.querySelector('.amount');
+            
+            if(inputValue === 'del') {
+                amountDisplay.textContent = amountDisplay.textContent.slice(0, -1);
+                if(amountDisplay.textContent === '') {
+                    amountDisplay.textContent = 0;
+                    document.querySelector('.converted').textContent = 0;
+                }
+                if (!amountDisplay.textContent.includes('.')) {
+                    document.querySelector('.btn-value[value="."]').removeAttribute('disabled');
+                }
+            } else {
+                amountDisplay.textContent += inputValue;
+                if (amountDisplay.textContent.includes('.')) {
+                    document.querySelector('.btn-value[value="."]').setAttribute('disabled', 'disabled');
+                }
+                if (this.value !== '.') {
+                    amountDisplay.textContent = parseFloat(amountDisplay.textContent);
+                }
+            }
+            convertCurrency();
+        });
     });
 
     const toggleBtn = document.querySelector('.toggle-currency__switch');
     toggleBtn.addEventListener('click', function (event) {
         let currencyFrom = document.querySelector('#convert--from').value;
         let currencyTo = document.querySelector('#convert--to').value;
-        let valueFrom = document.querySelector('.converter__currency-input').value;
-        let valueTo = document.querySelector('.converter__currency-display').getAttribute('data-num-value');
+        let valueFrom = document.querySelector('.amount').textContent;
+        let valueTo = document.querySelector('.converted').getAttribute('data-num-value');
 
         // Use destructuring to swap values
         [currencyFrom, valueFrom, currencyTo, valueTo] = [currencyTo, valueTo, currencyFrom, valueFrom];
 
         document.querySelector('#convert--from').value = currencyFrom;
         document.querySelector('#convert--to').value = currencyTo;
-        document.querySelector('.converter__currency-input').value = valueFrom;
-        document.querySelector('.converter__currency-display').textContent = valueTo.toLocaleString('en', {
+        document.querySelector('.amount').textContent = valueFrom;
+        document.querySelector('.converted').textContent = valueTo.toLocaleString('en', {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         });
-
-        convertCurrency();
     });
 
     convertCurrency = () => {
         const currencyTo = document.querySelector('#convert--to').value;
         const currencyFrom = document.querySelector('#convert--from').value;
-        const value = document.querySelector('.converter__currency-input').value;
+        const value = document.querySelector('.amount').textContent;
         const currencies = `${currencyFrom}_${currencyTo}`;
 
         // Creates a new instance of CurrencyConverter
