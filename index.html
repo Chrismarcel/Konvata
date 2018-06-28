@@ -63,3 +63,46 @@
 <script src="./js/idb.js"></script>
 <script src="./js/controller.js"></script>
 <script src="./sw.js"></script>
+
+<script>
+    // Populate the select options via the listCurrencies static method
+    const selectOptions = Array.from(document.querySelectorAll('.convert__currency-list'));
+    CurrencyConverter.listCurrencies(selectOptions);
+
+    const currencyLists = Array.from(document.querySelectorAll('.convert__currency-list'));
+    currencyLists.map(currencyList => {
+        currencyList.addEventListener('change', function () {
+            convertCurrency();
+        });
+    });
+
+    const inputBox = document.querySelector('.converter__currency-input');
+    inputBox.addEventListener('keyup', () => {
+        convertCurrency();
+    });
+
+    const toggleBtn = document.querySelector('.toggle-currency__switch');
+    toggleBtn.addEventListener('click', function (event) {
+        let currencyFrom = document.querySelector('#convert--from').value;
+        let currencyTo = document.querySelector('#convert--to').value;
+        let valueFrom = document.querySelector('.converter__currency-input').value;
+        let valueFrom = document.querySelector('.converter__currency-display').textContent;
+
+        // Use destructuring to swap values
+        [currencyFrom, currencyTo] = [currencyTo, currencyFrom];
+
+        document.querySelector('#convert--from').value = currencyFrom;
+        document.querySelector('#convert--to').value = currencyTo;
+        convertCurrency();
+    });
+
+    convertCurrency = () => {
+        const currencyTo = document.querySelector('#convert--to').value;
+        const currencyFrom = document.querySelector('#convert--from').value;
+        const value = document.querySelector('.converter__currency-input').value;
+        const currencies = `${currencyFrom}_${currencyTo}`;
+
+        // Creates a new instance of CurrencyConverter
+        const convertCurrency = new CurrencyConverter(currencies, value);
+    }
+</script>
