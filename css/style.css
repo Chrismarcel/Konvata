@@ -28,7 +28,8 @@ body {
 }
 
 .converter-display  {
-    height: 55%;
+    height: auto;
+    overflow: auto;
 }
 
  .calculator__to-currency {
@@ -91,18 +92,18 @@ body {
 
 .toggle-currency::before, .toggle-currency::after {
     content: '';
-    width: 115px;
+    width: 35%;
     position: absolute;
     top: 15px;
     border-bottom: 2px solid #FFFFFF;
 }
 
 .toggle-currency::after {
-    right: 20px;
+    right: 5%;
 }
 
 .toggle-currency::before {
-    left: 20px;
+    left: 5%;
 }
 
 .toggle-currency__switch {
