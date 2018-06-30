@@ -146,11 +146,21 @@
                 }
             } else {
                 amountDisplay.textContent += inputValue;
+                const valueList = amountDisplay.textContent.split('.');
+                let [wholeNumber, decimalValues] = valueList;
+                let valueOutput = parseFloat(wholeNumber);
+                if (!decimalValues) {
+                    decimalValues = '';
+                }
+                else {
+                    decimalValues = `.${decimalValues}`;
+                }
+                valueOutput = `${valueOutput}${decimalValues}`;
                 if (amountDisplay.textContent.includes('.')) {
                     document.querySelector('.btn-value[value="."]').setAttribute('disabled', 'disabled');
                 }
                 if (this.value !== '.') {
-                    amountDisplay.textContent = parseFloat(amountDisplay.textContent);
+                    amountDisplay.textContent = valueOutput;
                 }
             }
             convertCurrency();
@@ -174,6 +184,7 @@
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         });
+        document.querySelector('.converted').setAttribute('data-num-value', valueTo);
     });
 
     convertCurrency = () => {

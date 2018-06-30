@@ -92,7 +92,7 @@ body {
 
 .toggle-currency::before, .toggle-currency::after {
     content: '';
-    width: 35%;
+    width: 37%;
     position: absolute;
     top: 15px;
     border-bottom: 2px solid #FFFFFF;
