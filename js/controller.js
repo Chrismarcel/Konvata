@@ -22,7 +22,6 @@ class CurrencyConverter {
             upgradeDB.createObjectStore('currencies', { keyPath: 'currencyName' });
             upgradeDB.createObjectStore('exchange_rates', { keyPath: 'pair' });
         });
-
         
         navigator.serviceWorker.register('./sw.js')
         .then(reg => {
@@ -81,7 +80,7 @@ class CurrencyConverter {
             reg.addEventListener('updatefound', function () {
                 reg.installing.addEventListener('statechange', function () {
                     if (this.state === 'installed') {
-                        console.log('onupdatefound');
+                        //
                     }
                 })
             });
@@ -119,39 +118,41 @@ class CurrencyConverter {
         return dbPromise.then(db => {
             return db.transaction('exchange_rates').objectStore('exchange_rates').get(currency_pair);
         })
-        .then(exchangeRate => {
-            return exchangeRate || fetch(exchangeRateURL)
-            .then(response => {
-                return response.json();
-            })
-            .then(fetchedRate => {
-                return dbPromise.then(dbObj => {
-                    const rate = {
-                        pair: Object.keys(fetchedRate)[0],
-                        exchange_rate: Object.values(fetchedRate)[0].val
-                    };
-                    const tx = dbObj.transaction('exchange_rates', 'readwrite');
-                    tx.objectStore('exchange_rates').put(rate);
-
-                    return rate;
-                });
-            });
-        })
         .then(rateObj => {
-            console.log(rateObj);
-            const rate = rateObj.exchange_rate;
-            const convertedCurrency = value * rate;
-            const displayBox = document.querySelector('.converter__currency-display');
-            displayBox.setAttribute('data-num-value', convertedCurrency.toFixed(2));
-            displayBox.textContent = convertedCurrency.toLocaleString('en', 
-            {   
-                minimumFractionDigits: 2, 
-                maximumFractionDigits: 2 
-            });
-            return convertedCurrency;
-        })
-        .catch(error => {
-            // display error
+            if(rateObj) {
+                this.calculateConversion(rateObj.exchange_rate, value);
+                return rateObj;
+            } else { 
+                fetch(exchangeRateURL)
+                .then(response => {
+                    return response.json();
+                })
+                .then(fetchedRate => {
+                    return dbPromise.then(dbObj => {
+                        const rate = {
+                            pair: Object.keys(fetchedRate)[0],
+                            exchange_rate: Object.values(fetchedRate)[0].val
+                        };
+                        const tx = dbObj.transaction('exchange_rates', 'readwrite');
+                        tx.objectStore('exchange_rates').put(rate);
+                        
+                        this.calculateConversion(rate.exchange_rate, value);
+                        return rate;
+                    });
+                });
+            }
         });
+    }
+
+    static calculateConversion(rate, value) {
+        const convertedValue = value * rate;
+        const displayBox = document.querySelector('.converter__currency-display');
+        displayBox.setAttribute('data-num-value', convertedValue.toFixed(2));
+        displayBox.textContent = convertedValue.toLocaleString('en',
+            {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        return convertedValue;
     }
 }
