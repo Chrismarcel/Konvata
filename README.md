@@ -4,7 +4,7 @@
 ## Details
 This is the final project for the Google Africa Scholarship Program in partnership with Andela and Udacity.
 
-This project is hosted on Github Pages. Click [here](https://chrismarcel.github.io/currency-converter/) to see the demo.
+This project is hosted on Github Pages. Click [https://chrismarcel.github.io/currency-converter/](https://chrismarcel.github.io/currency-converter/) to see the demo.
 
 ## Getting the project up and running
 
