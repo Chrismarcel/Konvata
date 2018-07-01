@@ -88,15 +88,6 @@ class CurrencyConverter {
                     return allCurrencies;
                 });
             }
-
-            // If there's a Service Worker Update found
-            reg.addEventListener('updatefound', function () {
-                reg.installing.addEventListener('statechange', function () {
-                    if (this.state === 'installed') {
-                        //
-                    }
-                })
-            });
         });
     }
 

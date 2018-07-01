@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6792da">
+    <meta name="description" content="Currency Converter with offline support">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,500" rel="stylesheet">
@@ -22,7 +24,7 @@
                         </span>
                         <div class="converter__container">
                             <div class="col-xs-12 conversion">
-                                <select name="currencies" class="form-control convert__currency-list" id="convert--to">
+                                <select aria-label="Convert Currency To" name="currencies" class="form-control convert__currency-list" id="convert--to">
                                 </select>
                                 <div class="convert conversion__container--display">
                                     <span class="converter__currency-display converted" data-num-value="0">0</span>
@@ -34,7 +36,7 @@
                                 </button>
                             </div>
                             <div class="col-xs-12 conversion">
-                                <select name="currencies" class="form-control convert__currency-list" id="convert--from">
+                                <select aria-label="Convert Currency To" name="currencies" class="form-control convert__currency-list" id="convert--from">
                                 </select>
                                 <div class="convert conversion__container--display">
                                     <span class="converter__currency-display amount">0</span>

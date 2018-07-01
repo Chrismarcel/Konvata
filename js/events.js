@@ -7,6 +7,7 @@ selectOptions.map(currencyList => {
     });
 });
 
+// Loop through all the buttons and listen for Click events
 const inputValues = Array.from(document.querySelectorAll('.btn-value'));
 inputValues.map(inputValue => {
     inputValue.addEventListener('click', function () {
@@ -49,6 +50,7 @@ inputValues.map(inputValue => {
     });
 });
 
+// Listens for events on the toggle buttons and swaps the display fields
 const toggleBtn = document.querySelector('.toggle-currency__switch');
 toggleBtn.addEventListener('click', function (event) {
     let currencyFrom = document.querySelector('#convert--from').value;
@@ -69,6 +71,12 @@ toggleBtn.addEventListener('click', function (event) {
     document.querySelector('.converted').setAttribute('data-num-value', valueTo);
 });
 
+/**
+ * @function convertCurrency
+ * @description Creates a new instance of CurrencyConverter passing the Currency Pairs and Value as constructor values
+ * @param null
+ * @returns new CurrencyConverter instance
+ */
 convertCurrency = () => {
     const currencyTo = document.querySelector('#convert--to').value;
     const currencyFrom = document.querySelector('#convert--from').value;
@@ -77,4 +85,5 @@ convertCurrency = () => {
 
     // Creates a new instance of CurrencyConverter
     const convertCurrency = new CurrencyConverter(currencies, value);
+    return convertCurrency;
 }

@@ -29,7 +29,6 @@ self.addEventListener('fetch', event => {
         caches.open(staticCacheName).then(cache => {
             return cache.match(event.request.url).then(response => {
                 if (response) {
-                    console.log(response);
                     return response;
                 }
                 // If no item matched in cache, attempt fetching from network

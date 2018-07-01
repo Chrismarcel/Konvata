@@ -31,7 +31,7 @@ Then install the `live-server` npm package.
 npm install -g live-server
 ```
 
-Finally run the website.
+Finally run `live-server`.
 
 ```sh
 live-server
