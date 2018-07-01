@@ -195,8 +195,6 @@
         const currencyFrom = document.querySelector('#convert--from').value;
         const value = document.querySelector('.amount').textContent;
         const currencies = `${currencyFrom}_${currencyTo}`;
-
-        console.log(currencyTo, currencyFrom, value, currencies);
         
         // Creates a new instance of CurrencyConverter
         const convertCurrency = new CurrencyConverter(currencies, value);
