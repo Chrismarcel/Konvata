@@ -12,9 +12,10 @@ self.addEventListener('install', event => {
             cache.addAll([
                 './',
                 './sw.js',
+                './js/controller.js',
+                './js/events.js',
                 './css/bootstrap.min.css',
                 './css/style.css',
-                './js/controller.js',
                 './js/idb.js',
                 'https://fonts.googleapis.com/css?family=Lato:100,300,400,500',
                 'https://fonts.gstatic.com/s/lato/v14/S6uyw4BMUTPHjx4wXg.woff2'

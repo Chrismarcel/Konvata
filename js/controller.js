@@ -16,11 +16,11 @@ class CurrencyConverter {
     }
 
     /**
-     * @static serviceWorkerHandler
+     * @static initServiceWorker
      * @description Handles Event Listeners for Service Worker Registration
      * @returns new Service Worker registration object
      */
-    static serviceWorkerHandler() {
+    static initServiceWorker() {
         if (!navigator.serviceWorker) return;
         
         const dbPromise = idb.open('currency-list', 1, upgradeDB => {
