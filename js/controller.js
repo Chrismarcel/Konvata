@@ -1,6 +1,6 @@
 /**
  * 
- * The CurrencyConverter Class 
+ * The Currency class defines Staic methods to carry out Currency Conversions
  * 
  */
 
@@ -15,6 +15,11 @@ class CurrencyConverter {
         const selectCurrencyList = Array.from(document.querySelectorAll('.convert__currency-list'));
     }
 
+    /**
+     * @static serviceWorkerHandler
+     * @description Handles Event Listeners for Service Worker Registration
+     * @returns new Service Worker registration object
+     */
     static serviceWorkerHandler() {
         if (!navigator.serviceWorker) return;
         
@@ -25,7 +30,8 @@ class CurrencyConverter {
         
         navigator.serviceWorker.register('./sw.js')
         .then(reg => {
-            // If there's a waiting worker
+            // If there's a waiting worker, bypass network
+            // Fetch currency list from IndexedDB
             if (reg.waiting) {
                 return dbPromise.then(db => {
                     return db.transaction('currencies').objectStore('currencies').getAll();
@@ -36,7 +42,8 @@ class CurrencyConverter {
                 });
             }
             
-            // If there's an installing worker
+            // If there's a installing worker then it's loading for the first time
+            // Fetch currency list from API
             else if (reg.installing) {
                 const currenciesListURL = 'https://free.currencyconverterapi.com/api/v5/currencies';
                 
@@ -66,6 +73,8 @@ class CurrencyConverter {
                     }
                 });
             }
+            // If there's an activated worker, bypass network
+            // Fetch currency list from IndexedDB
             else if (reg.active.state === 'activated') {
                 return dbPromise.then(db => {
                     return db.transaction('currencies').objectStore('currencies').getAll();
@@ -87,6 +96,11 @@ class CurrencyConverter {
         });
     }
 
+    /**
+     * @static listCurrencies
+     * @description Sorts Currency list and populates the Currency Select Option element
+     * @returns Array of Currency list
+     */
     static listCurrencies(currencies) {
         const sortedCurrencies = Array.from(currencies).sort((previous, next) => {
             // Sort the currencies in Alphebetical order
@@ -98,6 +112,7 @@ class CurrencyConverter {
             }
             return 0;
         });
+        // Populate Select Option element
         return sortedCurrencies.map(currency => {
             const option = document.createElement('option');
             option.value = currency.id;
@@ -107,6 +122,12 @@ class CurrencyConverter {
         });
     }
 
+    /**
+     * @static convertCurrencies
+     * @description Fetches exchange rates from either IndexedDB or API
+     * if exchange rate does not exist in IndexedDB
+     * @returns exchange rate
+     */
     static convertCurrencies(currency_pair, value) {
         const exchangeRateURL = `https://free.currencyconverterapi.com/api/v5/convert?q=${currency_pair}&compact=y`;
 
@@ -115,14 +136,17 @@ class CurrencyConverter {
             upgradeDB.createObjectStore('exchange_rates', { keyPath: 'pair' });
         });
 
+        // Attempt fetching exchange rate from DB
         return dbPromise.then(db => {
             return db.transaction('exchange_rates').objectStore('exchange_rates').get(currency_pair);
         })
         .then(rateObj => {
+            // If exchange rate exists in IndexedDB
             if(rateObj) {
                 this.calculateConversion(rateObj.exchange_rate, value);
                 return rateObj;
             } else { 
+                // If not fetch from API and store in IndexedDB for subsequent operations
                 fetch(exchangeRateURL)
                 .then(response => {
                     return response.json();
@@ -144,6 +168,11 @@ class CurrencyConverter {
         });
     }
 
+    /**
+     * @static calculateConversion
+     * @description Calculates the conversion and displays the coverted currency value
+     * @returns converted value
+     */
     static calculateConversion(rate, value) {
         const convertedValue = value * rate;
         const displayBox = document.querySelector('.converter__currency-display');
