@@ -1,6 +1,9 @@
 /**
  * 
- * The Currency class defines Staic methods to carry out Currency Conversions
+ * @class CurrencyConverter
+ * @author Chrismarcel
+ * @version 1.0
+ * @description Currency Converter class contains Static methods to implement currency conversion
  * 
  */
 
@@ -18,6 +21,7 @@ class CurrencyConverter {
     /**
      * @static initServiceWorker
      * @description Handles Event Listeners for Service Worker Registration
+     * @param null
      * @returns new Service Worker registration object
      */
     static initServiceWorker() {
@@ -99,6 +103,7 @@ class CurrencyConverter {
     /**
      * @static listCurrencies
      * @description Sorts Currency list and populates the Currency Select Option element
+     * @param object currencies
      * @returns Array of Currency list
      */
     static listCurrencies(currencies) {
@@ -126,6 +131,8 @@ class CurrencyConverter {
      * @static convertCurrencies
      * @description Fetches exchange rates from either IndexedDB or API
      * if exchange rate does not exist in IndexedDB
+     * @param string currency_pair
+     * @param float value
      * @returns exchange rate
      */
     static convertCurrencies(currency_pair, value) {
@@ -171,6 +178,8 @@ class CurrencyConverter {
     /**
      * @static calculateConversion
      * @description Calculates the conversion and displays the coverted currency value
+     * @param float rate
+     * @param float value
      * @returns converted value
      */
     static calculateConversion(rate, value) {
