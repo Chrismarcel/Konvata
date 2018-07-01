@@ -165,3 +165,25 @@ body {
     color: #FFFFFF;
     font-weight: 600;
 }
+
+@media screen and (max-width: 767px) {
+    .main {
+        padding: 0;
+    }
+
+    .converter {
+        height: 100vh;
+    }
+
+    .conversion, .toggle-currency {
+        margin-bottom: 20px;
+    }
+
+    .convert__currency-list {
+        margin-bottom: 10px;
+    }
+
+    .converter-display__header { 
+        margin-bottom: 20px;
+    }
+}
