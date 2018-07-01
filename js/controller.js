@@ -24,7 +24,7 @@ class CurrencyConverter {
      * @param null
      * @returns new Service Worker registration object
      */
-    static initServiceWorker() {
+    static init() {
         if (!navigator.serviceWorker) return;
         
         const dbPromise = idb.open('currency-list', 1, upgradeDB => {
