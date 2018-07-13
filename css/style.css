@@ -81,6 +81,8 @@ body {
     color: #7096E6;
     background-color: #fdefef;
     border-color: #fdefef;
+    outline: 0;
+    box-shadow: none;
 }
 
 .converter__currency-display {
