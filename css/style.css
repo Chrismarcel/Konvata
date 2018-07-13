@@ -189,6 +189,7 @@ body {
 @media screen and (max-width: 767px) {
     .main {
         padding: 0;
+        position: fixed;
     }
 
     .converter {
