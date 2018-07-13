@@ -200,8 +200,16 @@ body {
         display: none;
     }
 
-    .conversion .toggle-currency {
-        margin-bottom: 20px;
+    .btn-value {
+        margin-bottom: 4px;
+    }
+
+    .conversion {
+        margin-bottom: 10px;
+    }
+
+    .toggle-currency {
+        margin-bottom: 15px;
     }
 
     .conversion:first-child {
