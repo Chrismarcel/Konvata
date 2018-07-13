@@ -202,18 +202,20 @@ body {
 
     .btn-value {
         margin-bottom: 4px;
+        padding: 12px;
     }
 
-    .conversion {
-        margin-bottom: 10px;
+    .conversion:last-child {
+        margin-bottom: 15px;
     }
 
     .toggle-currency {
-        margin-bottom: 15px;
+        margin-bottom: 12px;
     }
 
     .conversion:first-child {
         margin-top: 15px;
+        margin-bottom: 5px;
     }
 
     .convert__currency-list {
