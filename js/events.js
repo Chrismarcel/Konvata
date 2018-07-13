@@ -3,28 +3,31 @@ const selectOptions = Array.from(document.querySelectorAll('.convert__currency-l
 
 selectOptions.map(currencyList => {
     currencyList.addEventListener('change', function () {
-        convertCurrency();
+        if (parseFloat(document.querySelector('.amount').textContent) > 0) {
+            convertCurrency();
+        }
     });
 });
 
 // Loop through all the buttons and listen for Click events
-const inputValues = Array.from(document.querySelectorAll('.btn-value'));
-inputValues.map(inputValue => {
-    inputValue.addEventListener('click', function () {
-        const inputValue = this.value;
+const btnValues = Array.from(document.querySelectorAll('.btn-value'));
+btnValues.map(btnValue => {
+    btnValue.addEventListener('click', function () {
+        const btnValue = this.value;
         const amountDisplay = document.querySelector('.amount');
 
-        if (inputValue === 'del') {
+        if (btnValue === 'del') {
             amountDisplay.textContent = amountDisplay.textContent.slice(0, -1);
             if (amountDisplay.textContent === '') {
                 amountDisplay.textContent = 0;
                 document.querySelector('.converted').textContent = 0;
+                document.querySelector('.toggle-currency__switch').setAttribute('disabled', 'disabled');
             }
             if (!amountDisplay.textContent.includes('.')) {
                 document.querySelector('.btn-value[value="."]').removeAttribute('disabled');
             }
         } else {
-            amountDisplay.textContent += inputValue;
+            amountDisplay.textContent += btnValue;
             const valueList = amountDisplay.textContent.split('.');
             let [wholeNumber, decimalValues] = valueList;
             let valueOutput = parseFloat(wholeNumber);
@@ -44,7 +47,8 @@ inputValues.map(inputValue => {
         }
 
         // Chceck if the Convert To amount is not empty
-        if (amountDisplay.textContent !== 0) {
+        if (parseFloat(amountDisplay.textContent) > 0) {
+            document.querySelector('.toggle-currency__switch').removeAttribute('disabled');
             convertCurrency();
         }
     });
@@ -64,7 +68,7 @@ toggleBtn.addEventListener('click', function (event) {
     document.querySelector('#convert--from').value = currencyFrom;
     document.querySelector('#convert--to').value = currencyTo;
     document.querySelector('.amount').textContent = valueFrom;
-    document.querySelector('.converted').textContent = valueTo.toLocaleString('en', {
+    document.querySelector('.converted').textContent = parseInt(valueTo).toLocaleString('en', {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
     });

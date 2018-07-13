@@ -24,7 +24,7 @@
                         </span>
                         <div class="converter__container">
                             <div class="col-xs-12 conversion">
-                                <select aria-label="Convert Currency To" name="currencies" class="form-control convert__currency-list" id="convert--to">
+                                <span>To - </span> <select aria-label="Convert Currency To" name="currencies" class="form-control convert__currency-list" id="convert--to">
                                 </select>
                                 <div class="convert conversion__container--display">
                                     <span class="converter__currency-display converted" data-num-value="0">0</span>
@@ -32,11 +32,18 @@
                             </div>
                             <div class="col-xs-12 toggle-currency text-center">
                                 <button class="btn btn-primary toggle-currency__switch">
-                                    <span>&#8593;&#8595;</span>
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw">
+                                        <polyline points="23 4 23 10 17 10"></polyline>
+                                        <polyline points="1 20 1 14 7 14"></polyline>
+                                        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                                        </svg>
+                                    </span>
                                 </button>
                             </div>
                             <div class="col-xs-12 conversion">
-                                <select aria-label="Convert Currency To" name="currencies" class="form-control convert__currency-list" id="convert--from">
+                               <span>From - </span> <select aria-label="Convert Currency To" name="currencies" class="form-control convert__currency-list" id="convert--from">
                                 </select>
                                 <div class="convert conversion__container--display">
                                     <span class="converter__currency-display amount">0</span>
@@ -104,8 +111,24 @@
                                 </div>
                                 <div class="col-xs-4 currency-input">
                                     <button class="btn btn-primary btn-value" value="del">
-                                        &#9003;
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-delete">
+                                            <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path>
+                                            <line x1="18" y1="9" x2="12" y2="15"></line>
+                                            <line x1="12" y1="9" x2="18" y2="15"></line>
+                                        </svg>
                                     </button>
+                                </div>
+                                <div class="col-xs-4 col-xs-offset-4">
+                                    <button class="btn btn-primary btn-value">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up">
+                                            <polyline points="18 15 12 9 6 15"></polyline>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="col-xs-12">
+                                    
                                 </div>
                             </div>
                         </div>

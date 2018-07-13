@@ -25,6 +25,8 @@ class CurrencyConverter {
      * @returns new Service Worker registration object
      */
     static init() {
+        // Disable toggle button on load;
+        document.querySelector('.toggle-currency__switch').setAttribute('disabled', 'disabled');
         if (!navigator.serviceWorker) return;
         
         const dbPromise = idb.open('currency-list', 1, upgradeDB => {
