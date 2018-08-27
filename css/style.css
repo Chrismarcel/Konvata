@@ -202,10 +202,6 @@ body {
     height: 100vh;
   }
 
-  .converter-display__header {
-    display: none;
-  }
-
   .btn-value {
     margin-bottom: 4px;
     padding: 12px;
