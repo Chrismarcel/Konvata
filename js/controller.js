@@ -215,6 +215,7 @@ class CurrencyConverter {
   static installApp() {
     let deferredEvent;
     window.addEventListener("beforeinstallprompt", event => {
+      alert("hello");
       event.preventDefault();
       deferredEvent = event;
       deferredEvent.prompt();
