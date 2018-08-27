@@ -7,10 +7,12 @@
     <meta name="theme-color" content="#6792da">
     <meta name="description" content="Currency Converter with offline support">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,500" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
-    <title>Currency Converter</title>
+    <link rel="manifest" href="./manifest.json">
+    <link rel="preload" as="style" onload="this.rel='stylesheet'" href="./css/bootstrap.min.css">
+    <link rel="preload" as="style" onload="this.rel='stylesheet'" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,500"
+        rel="stylesheet">
+    <link rel="preload" as="style" onload="this.rel='stylesheet'" rel="stylesheet" href="./css/style.css">
+    <title>Konvata</title>
 </head>
 
 <body>
@@ -20,7 +22,7 @@
                 <div class="converter">
                     <div class="converter-display">
                         <span class="converter-display__header text-center">
-                            Currency Converter
+                            Konvata
                         </span>
                         <div class="converter__container">
                             <div class="col-xs-12 conversion">
@@ -33,7 +35,7 @@
                                 </div>
                             </div>
                             <div class="col-xs-12 toggle-currency text-center">
-                                <button class="btn btn-primary toggle-currency__switch">
+                                <button aria-label="Toggle Currencies" class="btn btn-primary toggle-currency__switch">
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                             fill="none" stroke="currentColor" stroke-width="2"
@@ -116,7 +118,7 @@
                                     </button>
                                 </div>
                                 <div class="col-xs-4 currency-input">
-                                    <button class="btn btn-primary btn-value" value="del">
+                                    <button aria-label="Delete" class="btn btn-primary btn-value" value="del">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                             fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"
