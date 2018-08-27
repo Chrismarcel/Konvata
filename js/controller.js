@@ -106,7 +106,7 @@ class CurrencyConverter {
           });
       }
     });
-    CurrencyConverter.installApp();
+    // CurrencyConverter.installApp();
   }
 
   /**
@@ -212,12 +212,12 @@ class CurrencyConverter {
    * @description Prompts user to install app to homescreen
    */
 
-  static installApp() {
-    let deferredEvent;
-    window.addEventListener("beforeinstallprompt", event => {
-      event.preventDefault();
-      deferredEvent = event;
-      deferredEvent.prompt();
-    });
-  }
+  //   static installApp() {
+  //     let deferredEvent;
+  //     window.addEventListener("beforeinstallprompt", event => {
+  //       event.preventDefault();
+  //       deferredEvent = event;
+  //       deferredEvent.prompt();
+  //     });
+  //   }
 }
