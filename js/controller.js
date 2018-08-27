@@ -106,6 +106,7 @@ class CurrencyConverter {
           });
       }
     });
+    CurrencyConverter.installApp();
   }
 
   /**
@@ -204,5 +205,19 @@ class CurrencyConverter {
       maximumFractionDigits: 2
     });
     return convertedValue;
+  }
+
+  /**
+   * @static installApp
+   * @description Prompts user to install app to homescreen
+   */
+
+  static installApp() {
+    let deferredEvent;
+    window.addEventListener("beforeinstallprompt", event => {
+      event.preventDefault();
+      deferredEvent = event;
+      deferredEvent.prompt();
+    });
   }
 }
