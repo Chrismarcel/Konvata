@@ -58,7 +58,7 @@ class CurrencyConverter {
       // Fetch currency list from API
       else if (reg.installing) {
         const currenciesListURL =
-          "https://free.currencyconverterapi.com/api/v5/currencies";
+          "https://free.currencyconverterapi.com/api/v5/currencies?apiKey=9b59ecea3d062d333939";
 
         fetch(currenciesListURL)
           .then(response => {
@@ -74,7 +74,7 @@ class CurrencyConverter {
             });
           });
 
-        reg.installing.addEventListener("statechange", function() {
+        reg.installing.addEventListener("statechange", function () {
           if (this.state === "installed") {
             return dbPromise
               .then(db => {
@@ -146,7 +146,7 @@ class CurrencyConverter {
    * @returns exchange rate
    */
   static convertCurrencies(currency_pair, value) {
-    const exchangeRateURL = `https://free.currencyconverterapi.com/api/v5/convert?q=${currency_pair}&compact=y`;
+    const exchangeRateURL = `https://free.currencyconverterapi.com/api/v5/convert?q=${currency_pair}&compact=y&apiKey=9b59ecea3d062d333939`;
 
     const dbPromise = idb.open("currency-list", 1, upgradeDB => {
       upgradeDB.createObjectStore("currencies", { keyPath: "currencyName" });
